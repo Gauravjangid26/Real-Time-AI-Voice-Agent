@@ -64,15 +64,15 @@ GOOGLE_APPLICATION_CREDENTIALS=path/to/google-credentials.json
 Run the agent with:
 
 ```bash
-python agent.py
+python main.py
 ```
 
 If you need to **download model/audio resources** before running:
 
 ```bash
-python agent.py download-files
+python main.py download-files
 ```
-
+  
 ---
 
 ## 📂 Project Structure
