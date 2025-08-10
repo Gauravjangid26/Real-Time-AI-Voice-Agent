@@ -1,0 +1,112 @@
+
+Problem Statement:
+
+Pizza Hut wants to enhance its customer experience by developing an AI-enabled voice agent that can interact with customers in a natural and seamless way. The voice agent should be capable of understanding and processing spoken orders, answering common queries (like menu details, delivery status, offers), and providing personalized recommendations based on customer preferences. The system must support real-time, full-duplex conversations, enabling customers to speak naturally without needing to press buttons or repeat themselves.
+
+The goal is to reduce wait times, improve order accuracy, and create an engaging and convenient ordering experience that increases customer satisfaction and drives sales for Pizza Hut.
+
+1.Use Cases
+Place an Order:
+Customers can speak their pizza order (size, crust, toppings, quantity), and the agent confirms and processes the order.
+
+Modify or Cancel Order:
+Customers can update or cancel their current order through voice commands.
+
+Ask About Menu and Offers:
+The agent provides information on menu items, prices, combos, ongoing deals, and discounts.
+
+Track Delivery Status:
+Customers can inquire about their order status and estimated delivery time.
+
+Personalized Recommendations:
+The agent suggests pizzas or deals based on previous orders or popular items.
+
+Store Locator:
+The agent provides nearby Pizza Hut store locations or delivery zones.
+
+Customer Support:
+Answer FAQs like payment methods, delivery charges, refund policies, and working hours.
+
+Natural Language Understanding (NLU):
+To comprehend customer intents and extract key entities (e.g., pizza size, toppings).
+
+2. Features
+Speech-to-Text (STT):
+Convert spoken words to text in real-time with high accuracy.
+
+Text-to-Speech (TTS):
+Respond with natural, clear voice replies.
+
+Context Management:
+Maintain conversation context to handle multi-turn dialogs and clarifications.
+
+Full-Duplex Communication:
+Enable simultaneous talking and listening for a smooth natural conversation.
+
+Order Management Integration:
+Connect with Pizza Hut’s existing order and inventory systems for real-time processing.
+
+Error Handling and Confirmation:
+Confirm orders and ask for clarifications when inputs are unclear or ambiguous.
+
+3. Technical Requirements
+Speech Recognition Engine:
+Use APIs like Google Speech-to-Text, Whisper, or other real-time STT services.
+
+Natural Language Processing:
+Use frameworks like Rasa, Dialogflow, or custom ML models for intent classification and entity extraction.
+
+Text-to-Speech Engine:
+Use Google TTS, Amazon Polly, or other services for voice response.
+
+Backend Service:
+A scalable server (Flask, Node.js, or similar) to manage conversations, integrate with Pizza Hut’s order database, and handle business logic.
+
+Real-time Communication:
+WebSocket or similar protocols to support full-duplex voice interaction.
+
+Database:
+To store user preferences, order history, and conversation logs.
+
+Security and Privacy:
+Ensure secure data handling and compliance with data protection regulations.
+
+
+
+
+
+Architecture for AI-Enabled Pizza Hut Voice Agent with User Interruption
++------------------+                  +-----------------------+                  +-----------------------+
+|                  |  Audio Stream    |                       |   Text & Intents   |                       |
+|   User Device    +----------------->|    Frontend Client     +----------------->|     Backend Server     |
+| (Smartphone, Web,|                  |  (Web/Mobile App or    |                   |  (Flask / Node.js API) |
+|  Smart Speaker)  |<-----------------+  Smart Speaker App)   |<------------------+                       |
+|                  |    Audio Output  |  - Captures microphone |  Response Text &   | - Speech-to-Text (STT)|
+|                  |                  |  - Plays TTS audio     |  Speech Audio      | - NLU (Intent/Entity) |
++------------------+                  |  - Manages full-duplex |                   | - Dialog Manager      |
+                                     |    streaming (WebRTC/  |                   | - Business Logic      |
+                                     |    WebSocket)          |                   | - Text-to-Speech (TTS)|
+                                     |  - Voice Activity      |                   | - User Interruption   |
+                                     |    Detection (VAD)     |                   |   Handling            |
+                                     +-----------------------+                   +-----------+-----------+
+                                                                                               |
+                                                                                               |
+                                                                                    +----------v-----------+
+                                                                                    |                      |
+                                                                                    |  Pizza Hut Systems   |
+                                                                                    |  - Order Management  |
+                                                                                    |  - Menu Database     |
+                                                                                    |  - Delivery Tracking |
+                                                                                    |                      |
+                                                                                    +----------------------+
+
+Example Architecture with LiveKit:
+pgsql
+Copy
+Edit
+User Device  <--audio/video-->  LiveKit Server  <--audio stream-->  Backend AI Server
+                                      |                                   |
+                          Real-time media streaming           Speech-to-Text / NLU / TTS modules
+                                      |                                   |
+                        Controls audio streams, supports           Manages conversation flow,
+                        user interruption and full-duplex          generates responses
